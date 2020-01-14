@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.caitou.dao.partner.PartnerDao">
+	<resultMap type="info.caitou.domain.entity.partner.Partner" id="partnerTableMap">
+		<result property="partnerCode" column="医院编号" />
+		<result property="legalPersons" column="法人" />
+		<result property="partnerName" column="医院名称" />
+		<result property="area" column="地区" />
+		<result property="partnerLevel" column="医院等级" />
+		<result property="address" column="地址" />
+		<result property="detailInfo" column="详细信息" />
+		<result property="province" column="省份" />
+		<result property="manager" column="负责人" />
+		<result property="phoneNumber" column="电话" />
+		<result property="fax" column="传真" />
+		<result property="partnerType" column="单位类型" />
+		<result property="bankName" column="开户行" />
+		<result property="bankNumber" column="账号" />
+		<result property="taxNuber" column="税号" />
+		<result property="contact" column="单位联系人" />
+		<result property="telphone" column="联系人手机号" />
+	</resultMap>
+
+	<select id="getPartnerById" resultType="info.caitou.domain.entity.partner.Partner" resultMap="partnerTableMap">
+		select 医院编号,法人,医院名称,地区,医院等级,地址,详细信息,省份,负责人,电话,传真,单位类型,开户行,账号,税号,单位联系人,联系人手机号 from 医院信息登记表V2 where 医院编号=#{partnerCode}
+	</select>
+
+	<select id="getPartnersToList" resultType="info.caitou.domain.entity.partner.Partner" resultMap="partnerTableMap">
+		select 医院编号,法人,医院名称,地区,医院等级,地址,详细信息,省份,负责人,电话,传真,单位类型,开户行,账号,税号,单位联系人,联系人手机号 from 医院信息登记表V2
+	</select>
+
+	<select id="getPartnersByAreaToList" resultType="info.caitou.domain.entity.partner.Partner" resultMap="partnerTableMap">
+		select 医院编号,法人,医院名称,地区,医院等级,地址,详细信息,省份,负责人,电话,传真,单位类型,开户行,账号,税号,单位联系人,联系人手机号 from 医院信息登记表V2 where 地区=#{area}
+	</select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.caitou.dao.hrm.DepartmentDao">
+	<resultMap type="info.caitou.domain.entity.hrm.Department" id="DepartmentTableMap">
+		<id property="deptId" column="DeptId" />
+		<result property="dptNo" column="DeptNo" />
+		<result property="deptName" column="DeptName" />
+		<result property="superId" column="SuperId" />
+		<result property="path" column="Path" />
+		<result property="DispName" column="DispName" />
+		<result property="FullName" column="FullName" />
+		<result property="IsOrg" column="IsOrg" />
+		<result property="IsOuter" column="IsOuter" />
+		<result property="AdminName" column="AdminName" />
+	</resultMap>
+	
+	<select id="getDepartmentsToMap" resultType="info.caitou.domain.entity.hrm.Department" resultMap="DepartmentTableMap">
+		select DeptId,DeptNo,DeptName,SuperId,Path,DispName,FullName,IsOrg,IsOuter,AdminName from ES_Dept where DeptId in(2,3,13,14,17,22,36,45,55,67,110,115,116)
+	</select>
+
+	<select id="getDepartmentsToList" resultType="info.caitou.domain.entity.hrm.Department" resultMap="DepartmentTableMap">
+		select DeptId,DeptNo,DeptName,SuperId,Path,DispName,FullName,IsOrg,IsOuter,AdminName from ES_Dept where DeptId in(2,3,13,14,17,22,36,45,55,67,110,115,116)
+	</select>
+
+	<select id="getDepartmentByDeptId" resultType="info.caitou.domain.entity.hrm.Department" resultMap="DepartmentTableMap">
+		select DeptId,DeptNo,DeptName,SuperId,Path,DispName,FullName,IsOrg,IsOuter,AdminName from ES_Dept where DeptId in(#{deptId})
+	</select>
+	
+	<select id="getDepartmentsToTreeNode" resultType="info.caitou.domain.entity.hrm.Department" resultMap="DepartmentTableMap">
+		select DeptId,DeptNo,DeptName,SuperId,Path,DispName,FullName,IsOrg,IsOuter,AdminName from ES_Dept where DeptId in(2,3,13,14,17,22,36,45,55,67,110,115,116)
+	</select>
+	
+</mapper>

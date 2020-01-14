@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.caitou.dao.account.AccountDao">
+	<resultMap type="info.caitou.domain.entity.account.Account" id="accountTableMap">
+		<id column="subCode" property="subCode" />
+		<result column="subFname" property="subFname" />
+		<result column="s1" property="s1" />
+		<result column="s2" property="s2" />
+		<result column="s3" property="s3" />
+		<result column="s4" property="s4" />
+	</resultMap>
+
+	<select id="getAccountsToMap" resultType="info.caitou.domain.entity.account.Account" resultMap="accountTableMap">
+		SELECT (case when S1='.' then '' else s1 end) +
+		(case when S2='.' then '' else '-'+s2 end) +
+		(case when S3='.' then '' else '-'+s3 end) +
+		(case when S4='.' then '' else '-'+s4 end) as subCode,
+		subFname,S1,S2,S3,s4
+		FROM (select distinct(subcode) as
+		Subcode,subFname,S1,S2,S3,s4 from SUB) sub
+	</select>
+
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.caitou.dao.hrm.HrmUserDao">
+	<resultMap type="info.caitou.domain.entity.hrm.HrmUser" id="hrmUserTableMap">
+		<id property="userId" column="UserId" />
+		<result property="uType" column="UType" />
+		<result property="deptId" column="DeptId" />
+		<result property="firstName" column="FirstName" />
+		<result property="lastname" column="LastName" />
+		<result property="userName" column="UserName" />
+		<result property="dispName" column="DispName" />
+		<result property="userLogin" column="UserLogin" />
+		<result property="userPwd" column="UserPwd" />
+		<result property="accState" column="AccState" />
+		<result property="lastLoginTime" column="LstLoginTime" />
+	</resultMap>
+
+	<select id="getUsersToList" resultType="info.caitou.domain.entity.hrm.HrmUser" resultMap="hrmUserTableMap">
+		select UserId,UType,DeptId,FirstName,LastName,UserName,DispName,UserLogin,UserPwd,AccState,LstLoginTime from es_user
+	</select>
+
+	<select id="getUserByDeptIdToList" resultType="info.caitou.domain.entity.hrm.HrmUser" resultMap="hrmUserTableMap">
+		{call HrmUserList_Proc_CC(#{deptId})}
+	</select>
+	
+	<select id="getUserByUserId" resultType="info.caitou.domain.entity.hrm.HrmUser" resultMap="hrmUserTableMap">
+		select UserId,UType,DeptId,FirstName,LastName,UserName,DispName,UserLogin,UserPwd,AccState,LstLoginTime from es_user where UserId=#{userid}
+	</select>
+
+</mapper>

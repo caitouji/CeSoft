@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.caitou.dao.account.AccountBaseDao">
+	<resultMap type="info.caitou.domain.entity.account.AccountBase" id="accountBaseTableMap">
+		<result column="CODE" property="code" />
+		<result column="CODE_NAME" property="codeName" />
+		<result column="alias" property="alias" />
+	</resultMap>
+
+	<select id="getAccountBasesToMap" resultType="info.caitou.domain.entity.account.AccountBase" resultMap="accountBaseTableMap">
+		SELECT CODE,CODE_NAME,alias from sub_base order by CODE
+	</select>
+</mapper>
